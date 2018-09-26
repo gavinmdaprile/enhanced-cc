@@ -18,7 +18,7 @@ def labeled_audio(audio_file, save_file):
     avg_window = 10 #size of window for running mean on output
     print_output = True
     sample_length = 3.0
-    keras_model = 'flask_audio/models/LSTM_SingleLayer_100Epochs_Group.h5'
+    keras_model = 'flask_audio/models/LSTM_SingleLayer_100Epochs_Group7.h5'
     
     RATE = 16000
     CHUNK = int(RATE * sample_length)  # 2 sec chunks
