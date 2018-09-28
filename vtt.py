@@ -2,6 +2,17 @@
 import sys
 import re
 
+#-------------------------------------------------------------------------------------------
+# USAGE: python vtt.py confidenceLevel trainingData.csv outputFile.vtt inputFile.vtt
+# all arguments required except inputfile.
+# confidenceLevel: Setting between 0 and 1 that looks at the training data. 
+# trainingData: CSV file showing the time in seconds and results for each sample.
+#               the header row is required and will be used for the tag
+# outputFile: Name of file to be created
+# captionFile(optional): Provide the name of the caption file. If none is provided
+#                        then only environmental sounds will be present in the captions.
+#------------------------------------------------------------------------------------------
+
 myDict = {}
 
 def addToDict(k,v):
