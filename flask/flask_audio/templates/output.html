@@ -22,7 +22,7 @@
   <body>
 
     <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color: #e3f2fd;">
-      <a class="navbar-brand" href="#">Captiive Sounds</a>
+      <a class="navbar-brand" href="#">Captiivate</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -41,42 +41,28 @@
 <br><br>
 	<div class="container">
 	    <div class="starter-template">
-	        <h2>Sounds identified!</h2>
+	        <h2>Sounds identified:</h2>
 	    </div>
+			
+      <table class="table table-hover">
+      {% for line in vttfile %}
+      <tr><td>{{ line }}</td></tr>
+      {% endfor %}
+      </table>
+	  
+	
+	<p> Printed output of process:
+		<pre>{{vttfile}}</pre> </p>
+	  
 		
 		<p> Download .srt caption file <u>here</u> </p>
 		<br>
-		
-		Video embedded here!
-		
-		<br>
-	    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-	    <script src="static/js/bootstrap.min.js"></script>
-		
-		<br>
-		<div class="embed-responsive embed-responsive-16by9">
-			<pre id="myCode"></pre>
-		</div>
-		
 
 			
 		
 
 	  </div> <!-- /.container-->
-	    <div class="container">
-	      <div class="starter-template">
-	        <h3>(Just for fun) Laughter predictions:</h3>
-				<canvas id="lineChart" ></canvas>
-			</div>
-		</div>
-
-
-	      <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-	      <script src="static/js/bootstrap.min.js"></script>
-
-
-	     </div><!-- /.container -->
-    
+	    
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -92,41 +78,6 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="static/js/mdb.min.js"></script>
 	
-	<script>
-		//line
-		var ctxL = document.getElementById("lineChart").getContext('2d');
-		var lineChart = new Chart(ctxL, {
-		    type: 'line',
-		    data: {
-		        labels: {{labels}},
-		        datasets: [
-		            {
-						label: "Laughter predictions",
-		                fillColor: "rgba(151,187,205,0.2)",
-		                strokeColor: "rgba(151,187,205,1)",
-		                pointColor: "rgba(151,187,205,1)",
-		                pointStrokeColor: "#fff",
-		                pointHighlightFill: "#fff",
-		                pointHighlightStroke: "rgba(151,187,205,1)",
-		                data: {{data}}
-		            }
-		        ]
-		    },
-		    options: {
-		        responsive: true
-				
-		    }
-		});
-	</script>
 		
-	<script>
-		
-		var myId = {{videoID}};
-
-		$('#myId').html(myId);
-
-		$('#myCode').html('<iframe src="//www.youtube.com/embed/' + myId + '" frameborder="0" allowfullscreen></iframe>');
-		
-	</script>
   </body>
 </html>
