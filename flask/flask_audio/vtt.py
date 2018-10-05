@@ -76,12 +76,12 @@ def parseFile(con,fn,dictionary):
         cols = line.split(",")
         t = cols[0].split("-")
         time = convertToTime(float(t[0]))
-        for col in cols[1:4]:
+        for col in cols[1:5]:
             if float(col) >= float(con):
                 dictionary = addToDict(time, '['+header[cols.index(col)]+']',dictionary)
         for col in cols[6:7]:
             if float(col) >= float(con):
-                dictionary = addToDict(time, '['+header[cols.index(col)]+']',dictionary)
+                dictionary = addToDict(time, '['+header[cols.index(col)].rstrip()+']',dictionary)
         
     fh.close()
     return dictionary

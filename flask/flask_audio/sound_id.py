@@ -14,6 +14,8 @@ from audioset import vggish_embeddings
 
 #expecting a mono, 16000 sampling rate audio file
 def labeled_audio(audio_file, save_file):
+    
+    keras.backend.clear_session()
 
     avg_window = 10 #size of window for running mean on output
     print_output = True

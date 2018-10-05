@@ -22,7 +22,7 @@
   <body>
 
     <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color: #e3f2fd;">
-      <a class="navbar-brand" href="#">Captiivate</a>
+      <a class="navbar-brand">Captiivate</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -33,15 +33,18 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Slides</a>
+            <a class="nav-link" href="about">About</a>
           </li>
       </div>
     </nav>
 
 <br><br>
-	<div class="container">
+  
+    <div class="container">
 
-	    <div class="starter-template">
+         <div class="row">
+             <div class="col-sm-7">
+                 <div class="starter-template">
 	        <h2>Caption non-speech sounds</h2>
 	        <p>Enter a link to your YouTube video:</p>
 			<p>Currently captioned sounds include applause, laughter, siren, car sounds, and cheering.</p>
@@ -51,7 +54,7 @@
 
 	      <form  action="/output" method="GET">
 	        <div class="form-group">
-	          <label for="audio_link">Youtube link:</label>
+	          <label for="audio_link">Paste Youtube link here:</label>
 	          <input class="form-control input-sm" type="text" id="audio_link_name" name='audio_link_name' placeholder="e.g. https://www.youtube.com/watch?v=fikv5ByrVyM">
 	        </div>
 
@@ -64,10 +67,36 @@
 	      </form>
 	    </div>
 
-	    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-	    <script src="static/js/bootstrap.min.js"></script>
+             </div>
 
-	  </div> <!-- /.container-->
+             <div class="col-sm-5">
+                 <p style="padding-top:110px"></p>
+                 <label><p>Try an example:</p></label>
+	   	      <form  action="/output" method="GET">
+				 
+				 Siren compilation video:
+			     <input class="btn btn-info" type="submit" value="https://www.youtube.com/watch?v=9vb9IOsxi7w" name="audio_link_name" id="audio_link_name" />
+
+				 NASCAR engine revs:
+			     <input class="btn btn-info" type="submit" value="https://www.youtube.com/watch?v=ugulThzd3Is" name="audio_link_name" id="audio_link_name" />
+
+				 Homecoming cheerleading in gymnasium:
+			     <input class="btn btn-info" type="submit" value="https://www.youtube.com/watch?v=Dbe67LYrzIk" name="audio_link_name" id="audio_link_name" />
+
+				 Speaker in conference hall with applause
+			     <input class="btn btn-info" type="submit" value="https://www.youtube.com/watch?v=55YL_UoOOiQ" name="audio_link_name" id="audio_link_name" />
+
+				 Seinfeld blooper reel
+			     <input class="btn btn-info" type="submit" value="https://www.youtube.com/watch?v=L2LdHH0hmHY" name="audio_link_name" id="audio_link_name" />
+
+	   	      </form>
+				 
+
+
+
+         </div>
+
+     </div>  
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

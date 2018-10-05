@@ -17,6 +17,11 @@ import os
 @app.route('/input')
 def audio_input():
     return render_template("input.html")
+    
+@app.route('/about')
+def about_input():
+    return render_template("about.html")
+
 
 @app.route('/output')
 def audio_output():
@@ -30,7 +35,7 @@ def audio_output():
     expected_cap = "flask_audio/files/" + videoID + '.en.vtt'
     final_cap_file_csv = "flask_audio/files/" + videoID + '_cap_f.vtt' #works with csv
     
-    con = .5
+    con = .75
     myDict = {}
     
     #data download and transfer
@@ -42,7 +47,7 @@ def audio_output():
     print(subprocess.check_output(["mv", expected_mp3, moved_mp3]))
     
     #convert to 16kHz wav
-    print(subprocess.check_output(["ffmpeg","-i", moved_mp3, "-ar", "16000", expected_wav]))
+    print(subprocess.check_output(["ffmpeg", "-y", "-i", moved_mp3, "-ar", "16000", expected_wav]))
     
     #run it through laughter detection
     labeled_audio(expected_wav, expected_csv)
@@ -50,20 +55,41 @@ def audio_output():
     #make caption file if need be
     myDict = parseFile(con,expected_csv, myDict)
     
+    #have text from vtt for printing to output
+    vttfile_newonly = [];
+    vttfile_newonly = returnVTT(vttfile_newonly, myDict)
+    
     #checking if vtt file is there
     exists = os.path.isfile(expected_cap)
+    vttfile_total = [];
+    
     if exists:
-        print("in the file")
         myDict = readVTT(expected_cap, myDict)
+        vttfile_total = returnVTT(vttfile_total, myDict)
         createVTT(final_cap_file_csv, myDict)
     else: # make a new VTT file
         createVTT(final_cap_file_csv, myDict)
     
-    #have text from vtt for printing to output
-    vttfile = [];
-    vttfile = returnVTT(vttfile, myDict)
-    print(vttfile)
-    return render_template("output.html", link = videoID, vttfile = vttfile)
+    
+    #adding in some logic if the file is empty
+    if len(vttfile_newonly) == 1 and not exists: #no new sounds identified
+        toptext = "Sorry, no sounds were identified, and no existing caption file was detected. Please try another video!"
+        midtext = ""
+        vttfile_newonly = []
+    elif len(vttfile_newonly) > 1 and not exists:
+        toptext = "Non-speech sounds identified:"
+        midtext = ""
+    elif len(vttfile_newonly) > 1 and exists:
+        toptext = "Non-speech sounds identified:"
+        midtext = "Existing captions with new captions inserted:"        
+    elif len(vttfile_newonly) == 1 and exists:
+        toptext = "Sorry, no sounds were identified. Please try another video!"
+        midtext = ""
+        vttfile_total = []
+        vttfile_newonly = []
+              
+        
+    return render_template("output.html", video_link = audio_link, vttfile_newonly = vttfile_newonly, vttfile_total = vttfile_total, toptext = toptext, midtext = midtext)
     
     
     
