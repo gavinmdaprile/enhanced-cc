@@ -35,7 +35,7 @@ def audio_output():
     expected_cap = "flask_audio/files/" + videoID + '.en.vtt'
     final_cap_file_csv = "flask_audio/files/" + videoID + '_cap_f.vtt' #works with csv
     
-    con = .75
+    con = .8
     myDict = {}
     
     #data download and transfer
